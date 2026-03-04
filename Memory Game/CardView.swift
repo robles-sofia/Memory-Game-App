@@ -39,7 +39,23 @@ struct CardView: View {
     }
     
     private var CardBack: some View {
-        
+        RoundedRectangle(cornerRadius: 12)
+            .fill(Color.blue)
+            .overlay(StripedPattern())
+            .shadow(radius: 3)
+            .opacity(card.isFaceUp ? 0 : 1)
+    }
+    
+    private var dragGesture: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                dragAmount = value.translation
+            }
+            .onEnded { _ in
+                withAnimation(.spring()) {
+                    dragAmount = .zero
+                }
+            }
     }
 }
 
