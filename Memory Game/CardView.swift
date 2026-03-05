@@ -58,4 +58,6 @@ struct CardView: View {
             }
     }
 }
-
+#Preview {
+    MainGameView()
+}
